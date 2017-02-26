@@ -1,13 +1,14 @@
 {
-    "name": "laravel/lumen",
-    "description": "The Laravel Lumen Framework.",
+    "name": "digitec/authback",
+    "description": "Authorization RESTful API",
     "keywords": ["framework", "laravel", "lumen"],
     "license": "MIT",
     "type": "project",
     "require": {
         "php": ">=5.6.4",
         "laravel/lumen-framework": "5.4.*",
-        "vlucas/phpdotenv": "~2.2"
+        "vlucas/phpdotenv": "~2.2",
+        "flipbox/lumen-generator": "^5.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
