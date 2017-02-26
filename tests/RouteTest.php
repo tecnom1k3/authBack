@@ -1,5 +1,4 @@
 <?php
-
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
@@ -10,12 +9,10 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testPingGetAll()
     {
-        $this->get('/');
-
-        $this->assertEquals(
-            $this->app->version(), $this->response->getContent()
-        );
+        $this->get('/ping');
+        $this->assertResponseOk();
+        $this->seeJsonEquals(['status'=>'ok']);
     }
 }
