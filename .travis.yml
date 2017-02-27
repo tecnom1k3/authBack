@@ -6,4 +6,4 @@ before_script:
 - cp .env.example .env
 - composer install
 script:
-- vendor/bin/phing test
+- vendor/bin/phing
