@@ -1,0 +1,9 @@
+language: php
+php:
+- 7.0
+- 7.1
+before_script:
+- cp .env.example .env
+- composer install
+script:
+- vendor/bin/phing
