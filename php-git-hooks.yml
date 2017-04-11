@@ -39,7 +39,7 @@ pre-push:
     enabled: true
     execute:
         phpunit:
-            enabled: true
+            enabled: false
             random-mode: true
             options: null
             strict-coverage:
