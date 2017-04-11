@@ -14,7 +14,8 @@
         "fzaninotto/faker": "~1.4",
         "phpunit/phpunit": "~5.0",
         "mockery/mockery": "~0.9",
-        "phing/phing": "^2.16"
+        "phing/phing": "^2.16",
+        "bruli/php-git-hooks": "^4.12"
     },
     "autoload": {
         "psr-4": {
@@ -30,8 +31,20 @@
     "scripts": {
         "post-root-package-install": [
             "php -r \"copy('.env.example', '.env');\""
+        ],
+        "post-install-cmd": [
+            "PhpGitHooks\\Infrastructure\\Composer\\ConfiguratorScript::buildConfig"
+        ],
+        "post-update-cmd": [
+            "PhpGitHooks\\Infrastructure\\Composer\\ConfiguratorScript::buildConfig"
         ]
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "config": {
+        "bin-dir": "bin",
+        "platform": {
+            "php": "7.1"
+        }
+    }
 }
