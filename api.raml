@@ -1,0 +1,124 @@
+#%RAML 1.0
+title: auth
+version: v1
+baseUri: http://auth.samplehost.com/api/v1
+/user:
+  put:
+    description: |
+      create user
+      first step: validate email
+    body:
+      application/json:
+        type: object
+        properties:
+          email:
+            type: string
+            minLength: 3
+    responses:
+      201:
+        description: validation token created
+        body:
+          application/json:
+            type: object
+            properties:
+              validationToken:
+                type: string
+      409:
+        description: email conflicts with existing one
+        body:
+          application/json:
+            properties:
+              message:
+                default: email already exists
+  post:
+    description: get auth token based on user credentials
+    body:
+      application/json:
+        type: object
+        properties:
+          email:
+            type: string
+          password:
+            type: string
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+              token:
+                type: string
+      404:
+        description: email/password do not match
+        body:
+          application/json:
+            properties:
+              message:
+                type: string
+                default: user not found
+  get:
+    description: search user
+    queryParameters:
+      email:
+        type: string
+        required: true
+        description: search by email
+    responses:
+      200:
+        description: user found
+        body:
+          application/json:
+            properties:
+              id:
+                type: integer
+      404:
+        description: user not found
+        body:
+          application/json:
+            properties:
+              message:
+                type: string
+                default: email not found
+  /{id}:
+    description: operate user by id
+    delete:
+      description: remove a user
+    put:
+      description: update a user
+    get:
+      description: retrieve a user
+      responses:
+        200:
+          description: user by id was found
+        404:
+          description: user by id not found
+/token:
+  description: operate on validation tokens
+  /{token}:
+    put:
+      description: create a user given an email validation token
+      body:
+        application/json:
+          properties:
+            password:
+              type: string
+              minLength: 8
+      responses:
+        201:
+          description: user created
+          body:
+            application/json:
+              properties:
+                message:
+                  default: user created
+/ping:
+  get:
+    responses:
+      200:
+        description: resource alive!
+        body:
+          application/json:
+            properties:
+              status:
+                type: string
+                default: ok
