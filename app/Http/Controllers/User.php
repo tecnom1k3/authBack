@@ -6,6 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Digitec\Service\User as UserService;
 use Digitec\Exception\MissingParameter;
+use Digitec\Dto\CreateUserRequest;
 
 class User extends Controller 
 {
@@ -25,8 +26,12 @@ class User extends Controller
     public function create(Request $request) : JsonResponse
     {
         if ($request->has('email')) {
+            
+            $createUserRequest = new CreateUserRequest;
+            $createUserRequest->setEmail($request->input('email'));
+            
             return response()->json([
-                'status' => $this->userService->create($request->input('email'))
+                'status' => $this->userService->create($createUserRequest)
             ]);
         }
         
