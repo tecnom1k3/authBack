@@ -12,3 +12,4 @@
 */
 
 $app->get('ping', 'Ping@getAll');
+$app->put('user', 'User@create');
