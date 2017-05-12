@@ -40,7 +40,7 @@ $app = new Laravel\Lumen\Application(
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
+    Digitec\Exception\Handler::class
 );
 
 $app->singleton(
@@ -84,6 +84,7 @@ $app->singleton(
 
 $app->register(Appzcoder\LumenRoutesList\RoutesCommandServiceProvider::class);
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+$app->register(App\Providers\UserServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
