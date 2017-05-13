@@ -10,7 +10,8 @@
         "vlucas/phpdotenv": "~2.2",
         "appzcoder/lumen-routes-list": "^1.0",
         "flipbox/lumen-generator": "^5.3",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "doctrine/dbal": "^2.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

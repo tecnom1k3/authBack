@@ -4,8 +4,15 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Digitec\Service\User;
 
+/**
+ * Class UserServiceProvider
+ * @package App\Providers
+ */
 class UserServiceProvider extends ServiceProvider
 {
+    /**
+     * @var bool
+     */
     protected $defer = true;
 
     /**

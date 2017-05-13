@@ -8,21 +8,40 @@ use Digitec\Service\User as UserService;
 use Digitec\Exception\MissingParameter;
 use Digitec\Dto\CreateUserRequest;
 
-class User extends Controller 
+/**
+ * Class User
+ * @package App\Http\Controllers
+ */
+class User extends Controller
 {
+    /**
+     * @var UserService
+     */
     protected $userService;
-    
+
+    /**
+     * User constructor.
+     * @param UserService $userService
+     */
     public function __construct(UserService $userService)
     {
         $this->userService = $userService;
     }
-    
+
+    /**
+     * @return JsonResponse
+     */
     public function getAll() : JsonResponse
     {
         //TODO: this should throw an exception
         abort(401);
     }
-  
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     * @throws MissingParameter
+     */
     public function create(Request $request) : JsonResponse
     {
         if ($request->has('email')) {
