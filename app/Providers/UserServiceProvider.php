@@ -3,6 +3,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Digitec\Service\User;
+use Digitec\Dao\User as UserDao;
 
 /**
  * Class UserServiceProvider
@@ -16,6 +17,11 @@ class UserServiceProvider extends ServiceProvider
     protected $defer = true;
 
     /**
+     * @var UserDao
+     */
+    protected $userDao;
+
+    /**
      * Register the application services.
      *
      * @return void
@@ -23,7 +29,12 @@ class UserServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(User::class, function($app){
-            return new User();
+            return new User($this->userDao);
         });
+    }
+
+    public function boot(UserDao $dao)
+    {
+        $this->userDao = $dao;
     }
 }

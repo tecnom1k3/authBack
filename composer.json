@@ -11,7 +11,10 @@
         "appzcoder/lumen-routes-list": "^1.0",
         "flipbox/lumen-generator": "^5.3",
         "predis/predis": "^1.1",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "illuminate/mail": "^5.4",
+        "aws/aws-sdk-php": "^3.28",
+        "emarref/jwt": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
