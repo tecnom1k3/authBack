@@ -48,7 +48,7 @@ class NewUserActivation extends Mailable
 
         return $this->view(self::VIEW)->with([
             'email' => $email,
-            'token' => $this->tokenService->getToken($email, self::AUDIENCE_TOKEN),
+            'token' => $this->tokenService->getJwtToken($email, self::AUDIENCE_TOKEN),
         ]);
     }
 }
