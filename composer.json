@@ -13,7 +13,7 @@
         "predis/predis": "^1.1",
         "doctrine/dbal": "^2.5",
         "illuminate/mail": "^5.4",
-        "aws/aws-sdk-php": "^3.28",
+        "aws/aws-sdk-php": "^3.29",
         "emarref/jwt": "^1.0",
         "paragonie/halite": "^3.2"
     },

@@ -6,6 +6,7 @@ use Digitec\Dto\CreateUserRequest;
 use Digitec\Dao\User as UserDao;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewUserActivation;
+use Laravel\Lumen\Application;
 
 /**
  * Class User
@@ -18,9 +19,15 @@ class User
      */
     protected $userDao;
 
-    public function __construct(UserDao $dao)
+    /**
+     * @var Application
+     */
+    protected $app;
+
+    public function __construct(UserDao $dao, Application $application)
     {
         $this->userDao = $dao;
+        $this->app = $application;
     }
 
     /**
@@ -42,6 +49,12 @@ class User
      */
     protected function sendEmail(CreateUserRequest $userRequest)
     {
-        Mail::to($userRequest->getEmail())->send(new NewUserActivation($userRequest)); //TODO: remove new constructor, use DI.  Also, change to use SES instead of SMTP
+        Mail::to($userRequest->getEmail())
+            ->send(
+                $this->app->makeWith(
+                    'App\Mail\NewUserActivation',
+                    ['userRequest' => $userRequest]
+                )
+            );
     }
 }

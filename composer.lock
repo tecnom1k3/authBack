@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "44f4fcb8917328236c69cdf6c6693a60",
+    "content-hash": "3e8ca75d862611d029c7f80ec9663daa",
     "packages": [
         {
             "name": "appzcoder/lumen-routes-list",
@@ -50,16 +50,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.29.0",
+            "version": "3.29.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "ad2206be87d722de5a52b3d1b0d6549fe2980fc7"
+                "reference": "76540001ff938c072db5367a7c945296984b999b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/ad2206be87d722de5a52b3d1b0d6549fe2980fc7",
-                "reference": "ad2206be87d722de5a52b3d1b0d6549fe2980fc7",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/76540001ff938c072db5367a7c945296984b999b",
+                "reference": "76540001ff938c072db5367a7c945296984b999b",
                 "shasum": ""
             },
             "require": {
@@ -126,7 +126,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-06-07T22:44:10+00:00"
+            "time": "2017-06-16T17:29:33+00:00"
         },
         {
             "name": "classpreloader/classpreloader",
