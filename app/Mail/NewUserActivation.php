@@ -2,17 +2,13 @@
 
 namespace App\Mail;
 
-use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue; //TODO: queue emails instead of sending sync
 use Digitec\Dto\CreateUserRequest;
 use Digitec\Service\Token as TokenService;
 use Digitec\Dto\GetJwtRequest;
 
 class NewUserActivation extends Mailable
 {
-    use Queueable, SerializesModels;
 
     const AUDIENCE_TOKEN = 'new_user';
     const VIEW           = 'emails.user.activation';

@@ -4,8 +4,7 @@ namespace Digitec\Service;
 use Digitec\Exception\EmailExists as EmailExistsException;
 use Digitec\Dto\CreateUserRequest;
 use Digitec\Dao\User as UserDao;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\NewUserActivation;
+use Illuminate\Support\Facades\Queue;
 use Laravel\Lumen\Application;
 
 /**
@@ -49,12 +48,13 @@ class User
      */
     protected function sendEmail(CreateUserRequest $userRequest)
     {
-        Mail::to($userRequest->getEmail())
-            ->send(
-                $this->app->makeWith(
-                    'App\Mail\NewUserActivation',
-                    ['userRequest' => $userRequest]
-                )
-            );
+        $mailQueue = $this->app->makeWith(
+            'App\Jobs\SendActivationEmailQueue',
+            [
+                'createUserRequest' => $userRequest,
+            ]
+        );
+
+        Queue::push($mailQueue);
     }
 }

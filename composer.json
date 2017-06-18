@@ -15,7 +15,8 @@
         "illuminate/mail": "^5.4",
         "aws/aws-sdk-php": "^3.29",
         "emarref/jwt": "^1.0",
-        "paragonie/halite": "^3.2"
+        "paragonie/halite": "^3.2",
+        "illuminate/redis": "^5.4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -86,6 +86,7 @@ $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 $app->register(App\Providers\UserServiceProvider::class);
 $app->register(App\Providers\UserDaoProvider::class);
 $app->register(App\Providers\TokenServiceProvider::class);
+$app->register(Illuminate\Redis\RedisServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
