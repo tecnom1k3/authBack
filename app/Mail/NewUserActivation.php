@@ -5,7 +5,7 @@ namespace App\Mail;
 use Illuminate\Mail\Mailable;
 use Digitec\Dto\CreateUserRequest;
 use Digitec\Service\Token as TokenService;
-use Digitec\Dto\GetJwtRequest;
+use Illuminate\Support\Facades\Log;
 
 class NewUserActivation extends Mailable
 {
@@ -42,9 +42,10 @@ class NewUserActivation extends Mailable
      */
     public function build()
     {
+        Log::info('Building email message for [' . $this->userRequest->getEmail() . '] in ' . self::class);
         $email = $this->userRequest->getEmail();
 
-        $jwtRequest = new GetJwtRequest;
+        $jwtRequest = app()->make('Digitec\Dto\GetJwtRequest');
         $jwtRequest->setTtl(self::TOKEN_TTL)
             ->setSubject($email)
             ->setAudience(self::AUDIENCE_TOKEN);

@@ -7,6 +7,7 @@ use Digitec\Library\Token\Factory as TokenFactory;
 use Digitec\Library\Token\Random;
 use Digitec\Dto\GetJwtRequest;
 use Digitec\Dto\RandomTokenRequest;
+use Illuminate\Support\Facades\Log;
 
 class Token
 {
@@ -16,6 +17,7 @@ class Token
      */
     public function getJwtToken(GetJwtRequest $jwtRequest): string
     {
+        Log::info('invoked [' . __FUNCTION__ . '] in [' . self::class . ']');
         /** @var Jwt $token */
         $token = TokenFactory::get(TokenFactory::TYPE_JWT);
         $token->setAudience($jwtRequest->getAudience())
@@ -30,6 +32,7 @@ class Token
      */
     public function getRandomToken(RandomTokenRequest $tokenRequest): string
     {
+        Log::info('invoked [' . __FUNCTION__ . '] in [' . self::class . ']');
         /** @var Random $token */
         $token = TokenFactory::get(TokenFactory::TYPE_RANDOM);
         $token->setLength($tokenRequest->getLength())

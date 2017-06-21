@@ -6,6 +6,7 @@ use Digitec\Dto\CreateUserRequest;
 use Digitec\Dao\User as UserDao;
 use Illuminate\Support\Facades\Queue;
 use Laravel\Lumen\Application;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class User
@@ -36,7 +37,9 @@ class User
      */
     public function create(CreateUserRequest $userRequest): bool
     {
+        Log::info('Attempting to create user with email [' . $userRequest->getEmail() . '] in ' . self::class);
         if ($this->userDao->checkEmailExists($userRequest->getEmail())) {
+            Log::error('Email provided [' . $userRequest->getEmail() . '] already exists in ' . self::class);
             throw new EmailExistsException($userRequest->getEmail());
         }
         $this->sendEmail($userRequest);
@@ -48,6 +51,7 @@ class User
      */
     protected function sendEmail(CreateUserRequest $userRequest)
     {
+        Log::info('Queueing activation email for [' . $userRequest->getEmail() . '] in ' . self::class);
         $mailQueue = $this->app->makeWith(
             'App\Jobs\SendActivationEmailQueue',
             [
