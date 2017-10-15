@@ -29,7 +29,7 @@ class UserServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(User::class, function($app){
-            return new User($this->userDao);
+            return new User($this->userDao, $app);
         });
     }
 
