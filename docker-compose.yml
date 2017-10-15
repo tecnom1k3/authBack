@@ -4,17 +4,17 @@
 version: "3.1"
 services:
 
-    memcached:
-      image: memcached:alpine
-      container_name: test-memcached
+#    memcached:
+#      image: memcached:alpine
+#      container_name: test-memcached
 
     redis:
       image: redis:alpine
-      container_name: test-redis
+      container_name: authback-redis
 
     mysql:
       image: mysql:8.0
-      container_name: test-mysql
+      container_name: authback-mysql
       working_dir: /application
       volumes:
         - .:/application
@@ -28,7 +28,7 @@ services:
 
     webserver:
       image: nginx:alpine
-      container_name: test-webserver
+      container_name: authback-webserver
       working_dir: /application
       volumes:
           - .:/application
@@ -38,7 +38,7 @@ services:
 
     php-fpm:
       build: phpdocker/php-fpm
-      container_name: test-php-fpm
+      container_name: authback-php-fpm
       working_dir: /application
       volumes:
         - .:/application
